@@ -30,6 +30,18 @@
                 placeholder="email@example.com"
             />
 
+            <!-- Phone Number-->
+            <flux:input
+                name="phone"
+                :label="__('Phone number')"
+                :value="old('phone')"
+                type="tel"
+                inputmode="numeric"
+                maxlength="10"
+                oninput="this.value = this.value.replace(/[^0-9]/g, '').slice(0, 10);"
+                placeholder="e.g. 4491234567"
+            />
+
             <!-- Password -->
             <flux:input
                 name="password"
