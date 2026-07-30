@@ -1,0 +1,51 @@
+<?php
+
+namespace App\Policies;
+
+use App\Models\Order;
+use App\Models\User;
+
+class OrderPolicy
+{
+    /**
+     * Determine whether the user can list orders.
+     */
+    public function viewAny(User $user): bool
+    {
+        return true;
+    }
+
+    /**
+     * Determine whether the user can view the order.
+     */
+    public function view(User $user, Order $order): bool
+    {
+        return $user->isAdmin() || $user->id === $order->user_id;
+    }
+
+    /**
+     * Determine whether the user can create orders.
+     */
+    public function create(User $user): bool
+    {
+        return true;
+    }
+
+    /**
+     * Determine whether the user can update the order.
+     *
+     * Only the shop can change prices, notes and statuses.
+     */
+    public function update(User $user, Order $order): bool
+    {
+        return $user->isAdmin();
+    }
+
+    /**
+     * Determine whether the user can delete the order.
+     */
+    public function delete(User $user, Order $order): bool
+    {
+        return $user->isAdmin();
+    }
+}

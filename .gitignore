@@ -22,3 +22,8 @@ yarn-error.log
 /.vscode
 /.zed
 /.gitkeep
+
+# El contenedor corre como www-data con HOME=/var/www, así que su home cae aquí.
+/.composer
+/.config
+/.bash_history
