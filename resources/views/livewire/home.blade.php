@@ -28,9 +28,9 @@
 
             <div class="flex items-center gap-4">
                 <a href="/login" class="text-slate-600 font-medium hover:text-blue-950 hidden sm:block">Login</a>
-                <flux:button variant="filled" class="hidden md:inline-flex bg-blue-950 hover:bg-blue-900 text-white font-semibold border-transparent px-6">
+                <button class="hidden md:inline-flex bg-blue-950 hover:bg-blue-900 text-white font-semibold border-transparent px-6 py-2 rounded-lg transition-colors">
                     Register
-                </flux:button>
+                </button>
                 <!-- Mobile hamburger -->
                 <button id="mobile-menu-btn" class="md:hidden flex flex-col gap-1.5 p-2 rounded-md hover:bg-slate-100 transition-colors" aria-label="Open menu">
                     <span class="hamburger-line block w-6 h-0.5 bg-slate-700 transition-all duration-300 origin-center"></span>
@@ -79,9 +79,9 @@
                 Expert sole lifts, custom orthotics, and premium shoe restoration.
             </p>
             <div class="reveal reveal-delay-3 flex flex-col sm:flex-row gap-4 justify-center items-center">
-                <flux:button variant="filled" class="w-full sm:w-auto font-bold text-lg px-8 py-3 bg-amber-500 hover:bg-amber-400 text-white border-transparent shadow-lg hover:shadow-amber-500/30 transition-all hover:-translate-y-0.5">
+                <button class="w-full sm:w-auto font-bold text-lg px-8 py-3 bg-amber-500 hover:bg-amber-400 text-white rounded-lg shadow-lg hover:shadow-amber-500/30 transition-all hover:-translate-y-0.5">
                     Schedule Consultation
-                </flux:button>
+                </button>
                 <a href="#portfolio" class="w-full sm:w-auto font-bold text-lg px-8 py-3 text-white border-2 border-blue-400/60 hover:border-white hover:bg-white/10 rounded-lg transition-all text-center">
                     See Our Work
                 </a>
@@ -148,7 +148,7 @@
                             <p class="text-slate-600 mb-8 flex-1 leading-relaxed">
                                 Precision sole additions prescribed by medical professionals to correct leg length discrepancies and improve posture.
                             </p>
-                            <flux:button variant="subtle" class="w-full text-blue-900 font-bold bg-blue-50 hover:bg-blue-100">Learn More</flux:button>
+                            <button class="w-full text-blue-900 font-bold bg-blue-50 hover:bg-blue-100 py-3 rounded-lg transition-colors">Learn More</button>
                         </div>
                     </flux:card>
                 </div>
@@ -167,7 +167,7 @@
                             <p class="text-slate-600 mb-8 flex-1 leading-relaxed">
                                 Hand-stitched, bespoke insoles designed specifically for your unique foot anatomy to provide unparalleled comfort.
                             </p>
-                            <flux:button variant="subtle" class="w-full text-blue-900 font-bold bg-blue-50 hover:bg-blue-100">Learn More</flux:button>
+                            <button class="w-full text-blue-900 font-bold bg-blue-50 hover:bg-blue-100 py-3 rounded-lg transition-colors">Learn More</button>
                         </div>
                     </flux:card>
                 </div>
@@ -186,7 +186,7 @@
                             <p class="text-slate-600 mb-8 flex-1 leading-relaxed">
                                 Traditional restoration services for premium footwear, seamlessly blending medical needs with original aesthetics.
                             </p>
-                            <flux:button variant="subtle" class="w-full text-blue-900 font-bold bg-blue-50 hover:bg-blue-100">Learn More</flux:button>
+                            <button class="w-full text-blue-900 font-bold bg-blue-50 hover:bg-blue-100 py-3 rounded-lg transition-colors">Learn More</button>
                         </div>
                     </flux:card>
                 </div>
@@ -336,7 +336,7 @@
                     <h2 class="text-4xl md:text-5xl font-bold text-blue-950 font-['Playfair_Display']">Before & After</h2>
                     <p class="mt-4 text-lg text-slate-600">See how we flawlessly integrate medical modifications without compromising the shoe's original beauty.</p>
                 </div>
-                <flux:button variant="outline" class="hidden md:flex text-blue-950 border-zinc-300 font-bold">View Full Portfolio</flux:button>
+                <button class="hidden md:flex text-blue-950 border border-zinc-300 bg-white hover:bg-zinc-50 font-bold px-6 py-2.5 rounded-lg transition-colors">View Full Portfolio</button>
             </div>
 
             <!-- Before/After Comparison Cards -->
@@ -369,17 +369,14 @@
 
                     <!-- Photo 2 -->
                     <div class="relative overflow-hidden border-b md:border-b-0 md:border-r border-white/30 group">
-                        <img src="/images/shoes/process-4.jpg" alt="Step 2 - Final Result" class="w-full h-64 md:h-full object-cover object-center group-hover:scale-105 transition-transform duration-500">
-                        <div class="absolute inset-0 bg-gradient-to-t from-amber-900/80 via-blue-950/10 to-transparent"></div>
+                        <img src="/images/shoes/process-4.jpg" alt="Step 2 - Evaluation" class="w-full h-64 md:h-full object-cover object-center group-hover:scale-105 transition-transform duration-500">
+                        <div class="absolute inset-0 bg-gradient-to-t from-blue-950/85 via-blue-950/10 to-transparent"></div>
                         <div class="absolute top-3 left-3">
-                            <span class="bg-amber-500 text-white text-xs font-extrabold w-8 h-8 rounded-full flex items-center justify-center shadow-md text-base">2</span>
-                        </div>
-                        <div class="absolute top-3 right-3">
-                            <span class="bg-amber-500 text-white text-xs font-bold px-2 py-1 rounded shadow">AFTER ✓</span>
+                            <span class="bg-blue-800 text-white text-xs font-extrabold w-8 h-8 rounded-full flex items-center justify-center shadow-md text-base">2</span>
                         </div>
                         <div class="absolute bottom-0 left-0 right-0 p-4">
-                            <div class="text-white font-bold text-sm">Final Result</div>
-                            <div class="text-amber-200 text-xs">Lift integrated</div>
+                            <div class="text-white font-bold text-sm">Evaluation</div>
+                            <div class="text-blue-200 text-xs">Measurements & Rx</div>
                         </div>
                     </div>
 
@@ -398,14 +395,17 @@
 
                     <!-- Photo 4 -->
                     <div class="relative overflow-hidden group">
-                        <img src="/images/shoes/process-2.jpg" alt="Step 4 - Evaluation" class="w-full h-64 md:h-full object-cover object-center group-hover:scale-105 transition-transform duration-500">
-                        <div class="absolute inset-0 bg-gradient-to-t from-blue-950/85 via-blue-950/10 to-transparent"></div>
+                        <img src="/images/shoes/process-2.jpg" alt="Step 4 - Final Result" class="w-full h-64 md:h-full object-cover object-center group-hover:scale-105 transition-transform duration-500">
+                        <div class="absolute inset-0 bg-gradient-to-t from-amber-900/80 via-blue-950/10 to-transparent"></div>
                         <div class="absolute top-3 left-3">
-                            <span class="bg-blue-800 text-white text-xs font-extrabold w-8 h-8 rounded-full flex items-center justify-center shadow-md text-base">4</span>
+                            <span class="bg-amber-500 text-white text-xs font-extrabold w-8 h-8 rounded-full flex items-center justify-center shadow-md text-base">4</span>
+                        </div>
+                        <div class="absolute top-3 right-3">
+                            <span class="bg-amber-500 text-white text-xs font-bold px-2 py-1 rounded shadow">AFTER ✓</span>
                         </div>
                         <div class="absolute bottom-0 left-0 right-0 p-4">
-                            <div class="text-white font-bold text-sm">Evaluation</div>
-                            <div class="text-blue-200 text-xs">Measurements & Rx</div>
+                            <div class="text-white font-bold text-sm">Final Result</div>
+                            <div class="text-amber-200 text-xs">Lift integrated</div>
                         </div>
                     </div>
                 </div>
@@ -470,7 +470,7 @@
                 </div>
             </div>
 
-            <flux:button variant="outline" class="w-full mt-8 md:hidden text-blue-950 border-zinc-300 font-bold">View Full Portfolio</flux:button>
+            <button class="w-full mt-8 md:hidden text-blue-950 border border-zinc-300 bg-white hover:bg-zinc-50 font-bold py-3 rounded-lg transition-colors">View Full Portfolio</button>
         </div>
     </section>
 
@@ -627,9 +627,9 @@
             </div>
 
             <div class="mt-20 text-center reveal">
-                <flux:button variant="filled" class="bg-blue-950 hover:bg-blue-900 text-white font-bold text-lg px-10 py-4 shadow-lg hover:-translate-y-0.5 transition-transform">
+                <button class="bg-blue-950 hover:bg-blue-900 text-white font-bold text-lg px-10 py-4 rounded-lg shadow-lg hover:-translate-y-0.5 transition-transform">
                     Start Your Order
-                </flux:button>
+                </button>
             </div>
         </div>
     </section>
@@ -762,7 +762,7 @@
                                 </div>
                                 <div>
                                     <div class="font-bold text-lg mb-1">Location</div>
-                                    <div class="text-blue-200">123 Craftsmanship Way<br>Grand Rapids, MI 49503</div>
+                                    <div class="text-blue-200">115 Pearl St<br>Ypsilanti, MI 48197</div>
                                 </div>
                             </div>
 
@@ -795,15 +795,24 @@
 
                     <form class="space-y-6">
                         <div class="grid grid-cols-1 gap-6">
-                            <flux:input label="Name" placeholder="Your full name" />
-                            <flux:input label="Email" type="email" placeholder="your@email.com" />
-                            <flux:textarea label="Message" placeholder="How can we help you?" rows="4" />
+                            <div>
+                                <label class="block text-sm font-medium text-slate-700 mb-1">Name</label>
+                                <input type="text" placeholder="Your full name" class="w-full border border-slate-300 bg-slate-50 text-slate-900 rounded-lg px-4 py-2.5 focus:outline-none focus:ring-2 focus:ring-amber-500 focus:border-amber-500" />
+                            </div>
+                            <div>
+                                <label class="block text-sm font-medium text-slate-700 mb-1">Email</label>
+                                <input type="email" placeholder="your@email.com" class="w-full border border-slate-300 bg-slate-50 text-slate-900 rounded-lg px-4 py-2.5 focus:outline-none focus:ring-2 focus:ring-amber-500 focus:border-amber-500" />
+                            </div>
+                            <div>
+                                <label class="block text-sm font-medium text-slate-700 mb-1">Message</label>
+                                <textarea placeholder="How can we help you?" rows="4" class="w-full border border-slate-300 bg-slate-50 text-slate-900 rounded-lg px-4 py-2.5 focus:outline-none focus:ring-2 focus:ring-amber-500 focus:border-amber-500"></textarea>
+                            </div>
                         </div>
 
                         <div class="pt-4">
-                            <flux:button variant="filled" class="w-full bg-amber-500 hover:bg-amber-400 text-white font-bold text-lg py-3 border-transparent shadow-md hover:-translate-y-0.5 transition-transform">
+                            <button class="w-full bg-amber-500 hover:bg-amber-400 text-white font-bold text-lg py-3 rounded-lg shadow-md hover:-translate-y-0.5 transition-transform">
                                 Send Message
-                            </flux:button>
+                            </button>
                         </div>
                     </form>
                 </div>
@@ -849,7 +858,7 @@
                     <ul class="space-y-4">
                         <li class="flex items-start gap-3 justify-center md:justify-start">
                             <svg class="w-5 h-5 text-amber-500 mt-1 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path></svg>
-                            <span class="text-slate-400">123 Craftsmanship Way,<br>Grand Rapids, MI 49503</span>
+                            <span class="text-slate-400">115 Pearl St,<br>Ypsilanti, MI 48197</span>
                         </li>
                         <li class="flex items-center gap-3 justify-center md:justify-start">
                             <svg class="w-5 h-5 text-amber-500 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"></path></svg>
