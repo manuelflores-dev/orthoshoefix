@@ -48,11 +48,14 @@ class PortfolioPhoto extends Model
 
     /**
      * Get the URL used to display the photo.
+     *
+     * Always relative to the current request, so a stale APP_URL cannot serve the
+     * images over http and get them blocked as mixed content on an https page.
      */
     public function url(): string
     {
         return $this->isStaticAsset()
             ? asset($this->path)
-            : Storage::disk(self::DISK)->url($this->path);
+            : asset('storage/'.$this->path);
     }
 }

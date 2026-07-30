@@ -37,9 +37,13 @@ class OrderPhoto extends Model
 
     /**
      * Get the publicly accessible URL of the photo.
+     *
+     * Built from the current request instead of the disk's configured URL, which
+     * hangs off APP_URL: a stale APP_URL would serve images over http and the
+     * browser blocks them as mixed content on an https page.
      */
     public function url(): string
     {
-        return Storage::disk(self::DISK)->url($this->path);
+        return asset('storage/'.$this->path);
     }
 }
