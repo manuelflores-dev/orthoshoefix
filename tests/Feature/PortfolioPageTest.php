@@ -27,7 +27,18 @@ test('the landing page features published cases and links to the full portfolio'
     $this->get(route('home'))
         ->assertOk()
         ->assertSee('Featured case')
+        ->assertSee('Before & After', escape: false)
         ->assertSee(route('portfolio'));
+});
+
+test('the landing page skips the before and after section when nothing is published', function () {
+    PortfolioItem::factory()->withPhotos()->draft()->create(['title' => 'Draft case']);
+
+    $this->get(route('home'))
+        ->assertOk()
+        ->assertDontSee('Draft case')
+        ->assertDontSee('id="portfolio"', escape: false)
+        ->assertDontSee('Our Craftsmanship');
 });
 
 test('the landing page features at most three cases', function () {
