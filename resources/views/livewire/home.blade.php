@@ -24,7 +24,9 @@
                 @if (config('features.sole_lab'))
                     <a href="#soles" class="hover:text-blue-950 transition-colors">Soles</a>
                 @endif
-                <a href="#portfolio" class="hover:text-blue-950 transition-colors">Before & After</a>
+                @if ($this->portfolioItems->isNotEmpty())
+                    <a href="#portfolio" class="hover:text-blue-950 transition-colors">Before & After</a>
+                @endif
                 <a href="#faq" class="hover:text-blue-950 transition-colors">FAQ</a>
                 <a href="#testimonials" class="hover:text-blue-950 transition-colors">Testimonials</a>
             </nav>
@@ -50,7 +52,9 @@
                 @if (config('features.sole_lab'))
                     <a href="#soles" class="mobile-menu-link px-4 py-3 rounded-lg text-slate-700 font-medium hover:bg-blue-50 hover:text-blue-950 transition-colors">Soles</a>
                 @endif
-                <a href="#portfolio" class="mobile-menu-link px-4 py-3 rounded-lg text-slate-700 font-medium hover:bg-blue-50 hover:text-blue-950 transition-colors">Before & After</a>
+                @if ($this->portfolioItems->isNotEmpty())
+                    <a href="#portfolio" class="mobile-menu-link px-4 py-3 rounded-lg text-slate-700 font-medium hover:bg-blue-50 hover:text-blue-950 transition-colors">Before & After</a>
+                @endif
                 <a href="#faq" class="mobile-menu-link px-4 py-3 rounded-lg text-slate-700 font-medium hover:bg-blue-50 hover:text-blue-950 transition-colors">FAQ</a>
                 <a href="#testimonials" class="mobile-menu-link px-4 py-3 rounded-lg text-slate-700 font-medium hover:bg-blue-50 hover:text-blue-950 transition-colors">Testimonials</a>
                 <div class="border-t border-zinc-100 mt-2 pt-3 flex flex-col gap-2">
@@ -340,6 +344,9 @@
     </section>
 
     <!-- ===================== BEFORE & AFTER PORTFOLIO ===================== -->
+    {{-- Cases come from the portfolio manager. With none published the section is skipped
+         entirely, which reads better than an empty placeholder on a live page. --}}
+    @if ($this->portfolioItems->isNotEmpty())
     <section id="portfolio" class="py-24 bg-slate-50 border-t border-zinc-200">
         <div class="max-w-7xl mx-auto px-6 lg:px-8">
             <div class="flex flex-col md:flex-row justify-between items-end mb-12 reveal">
@@ -365,14 +372,10 @@
                 </div>
             @endif
 
-            @if ($this->portfolioItems->isEmpty())
-                <div class="rounded-2xl border border-dashed border-zinc-300 bg-white py-16 text-center">
-                    <p class="text-slate-500">Our latest cases are on their way.</p>
-                </div>
-            @endif
             <a href="{{ route('portfolio') }}" wire:navigate class="block w-full mt-8 md:hidden text-blue-950 border border-zinc-300 bg-white hover:bg-zinc-50 font-bold py-3 rounded-lg transition-colors text-center">View Full Portfolio</a>
         </div>
     </section>
+    @endif
 
     <!-- ===================== TESTIMONIALS ===================== -->
     <section id="testimonials" class="py-24 bg-blue-950 text-white">
