@@ -38,6 +38,10 @@
                         <flux:sidebar.item icon="users" :href="route('admin.customers.index')" :current="request()->routeIs('admin.customers.*')" wire:navigate>
                             {{ __('Customers') }}
                         </flux:sidebar.item>
+
+                        <flux:sidebar.item icon="photo" :href="route('admin.portfolio.index')" :current="request()->routeIs('admin.portfolio.*')" wire:navigate>
+                            {{ __('Portfolio') }}
+                        </flux:sidebar.item>
                     </flux:sidebar.group>
                 @else
                     <flux:sidebar.group :heading="__('My shoes')" class="grid">

@@ -3,10 +3,12 @@
 use App\Livewire\Admin;
 use App\Livewire\Client;
 use App\Livewire\Home;
+use App\Livewire\Portfolio;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', Home::class)->name('home');
+Route::livewire('portfolio', Portfolio::class)->name('portfolio');
 
 /*
 |--------------------------------------------------------------------------
@@ -43,6 +45,10 @@ Route::middleware(['auth', 'admin'])->prefix('admin')->name('admin.')->group(fun
     Route::livewire('orders/{order}', Admin\Orders\Show::class)->name('orders.show');
 
     Route::livewire('customers', Admin\Customers\Index::class)->name('customers.index');
+
+    Route::livewire('portfolio', Admin\Portfolio\Index::class)->name('portfolio.index');
+    Route::livewire('portfolio/new', Admin\Portfolio\Edit::class)->name('portfolio.create');
+    Route::livewire('portfolio/{item}', Admin\Portfolio\Edit::class)->name('portfolio.edit');
 });
 
 require __DIR__.'/settings.php';
