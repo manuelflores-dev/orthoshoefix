@@ -10,23 +10,60 @@
                 <flux:sidebar.collapse class="lg:hidden" />
             </flux:sidebar.header>
 
+            @php
+                $user = auth()->user();
+                $readyCount = $user->isAdmin()
+                    ? \App\Models\Order::query()->readyForPickup()->count()
+                    : $user->orders()->readyForPickup()->count();
+            @endphp
+
             <flux:sidebar.nav>
-                <flux:sidebar.group :heading="__('Platform')" class="grid">
-                    <flux:sidebar.item icon="home" :href="route('dashboard')" :current="request()->routeIs('dashboard')" wire:navigate>
-                        {{ __('Dashboard') }}
-                    </flux:sidebar.item>
-                </flux:sidebar.group>
+                @if ($user->isAdmin())
+                    <flux:sidebar.group :heading="__('Workshop')" class="grid">
+                        <flux:sidebar.item icon="chart-bar" :href="route('admin.dashboard')" :current="request()->routeIs('admin.dashboard')" wire:navigate>
+                            {{ __('Dashboard') }}
+                        </flux:sidebar.item>
+
+                        <flux:sidebar.item
+                            icon="clipboard-document-list"
+                            :href="route('admin.orders.index')"
+                            :current="request()->routeIs('admin.orders.*')"
+                            :badge="$readyCount ?: null"
+                            badge:color="green"
+                            wire:navigate
+                        >
+                            {{ __('Orders') }}
+                        </flux:sidebar.item>
+
+                        <flux:sidebar.item icon="users" :href="route('admin.customers.index')" :current="request()->routeIs('admin.customers.*')" wire:navigate>
+                            {{ __('Customers') }}
+                        </flux:sidebar.item>
+                    </flux:sidebar.group>
+                @else
+                    <flux:sidebar.group :heading="__('My shoes')" class="grid">
+                        <flux:sidebar.item
+                            icon="clipboard-document-list"
+                            :href="route('orders.index')"
+                            :current="request()->routeIs('orders.index') || request()->routeIs('orders.show')"
+                            :badge="$readyCount ?: null"
+                            badge:color="green"
+                            wire:navigate
+                        >
+                            {{ __('My orders') }}
+                        </flux:sidebar.item>
+
+                        <flux:sidebar.item icon="plus" :href="route('orders.create')" :current="request()->routeIs('orders.create')" wire:navigate>
+                            {{ __('Request a service') }}
+                        </flux:sidebar.item>
+                    </flux:sidebar.group>
+                @endif
             </flux:sidebar.nav>
 
             <flux:spacer />
 
             <flux:sidebar.nav>
-                <flux:sidebar.item icon="folder-git-2" href="https://github.com/laravel/livewire-starter-kit" target="_blank">
-                    {{ __('Repository') }}
-                </flux:sidebar.item>
-
-                <flux:sidebar.item icon="book-open-text" href="https://laravel.com/docs/starter-kits#livewire" target="_blank">
-                    {{ __('Documentation') }}
+                <flux:sidebar.item icon="home" :href="route('home')" wire:navigate>
+                    {{ __('Shop website') }}
                 </flux:sidebar.item>
             </flux:sidebar.nav>
 

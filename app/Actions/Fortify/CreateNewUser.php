@@ -4,6 +4,7 @@ namespace App\Actions\Fortify;
 
 use App\Concerns\PasswordValidationRules;
 use App\Concerns\ProfileValidationRules;
+use App\Enums\UserRole;
 use App\Models\User;
 use Illuminate\Support\Facades\Validator;
 use Laravel\Fortify\Contracts\CreatesNewUsers;
@@ -27,8 +28,10 @@ class CreateNewUser implements CreatesNewUsers
         return User::create([
             'name' => $input['name'],
             'email' => $input['email'],
-            'phone' => $input['phone'],
+            // The phone number is optional on the registration form.
+            'phone' => $input['phone'] ?? null,
             'password' => $input['password'],
+            'role' => UserRole::Client,
         ]);
     }
 }
