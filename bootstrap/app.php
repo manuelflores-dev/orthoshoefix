@@ -15,6 +15,11 @@ return Application::configure(basePath: dirname(__DIR__))
         $middleware->alias([
             'admin' => EnsureUserIsAdmin::class,
         ]);
+
+        // The app always runs behind a reverse proxy that terminates TLS, so without
+        // this Laravel sees plain HTTP and generates http:// URLs (Livewire's update
+        // endpoint included, which browsers then block as mixed content).
+        $middleware->trustProxies(at: '*');
     })
     ->withExceptions(function (Exceptions $exceptions): void {
         //

@@ -21,16 +21,19 @@
 
             <nav class="hidden md:flex items-center gap-8 font-medium text-slate-600">
                 <a href="#services" class="hover:text-blue-950 transition-colors">Services</a>
+                @if (config('features.sole_lab'))
+                    <a href="#soles" class="hover:text-blue-950 transition-colors">Soles</a>
+                @endif
                 <a href="#portfolio" class="hover:text-blue-950 transition-colors">Before & After</a>
                 <a href="#faq" class="hover:text-blue-950 transition-colors">FAQ</a>
                 <a href="#testimonials" class="hover:text-blue-950 transition-colors">Testimonials</a>
             </nav>
 
             <div class="flex items-center gap-4">
-                <a href="/login" class="text-slate-600 font-medium hover:text-blue-950 hidden sm:block">Login</a>
-                <button class="hidden md:inline-flex bg-blue-950 hover:bg-blue-900 text-white font-semibold border-transparent px-6 py-2 rounded-lg transition-colors">
+                <a href="{{ route('login') }}" class="text-slate-600 font-medium hover:text-blue-950 hidden sm:block">Login</a>
+                <a href="{{ route('register') }}" class="hidden md:inline-flex bg-blue-950 hover:bg-blue-900 text-white font-semibold border-transparent px-6 py-2 rounded-lg transition-colors">
                     Register
-                </button>
+                </a>
                 <!-- Mobile hamburger -->
                 <button id="mobile-menu-btn" class="md:hidden flex flex-col gap-1.5 p-2 rounded-md hover:bg-slate-100 transition-colors" aria-label="Open menu">
                     <span class="hamburger-line block w-6 h-0.5 bg-slate-700 transition-all duration-300 origin-center"></span>
@@ -44,12 +47,15 @@
         <div id="mobile-menu" class="md:hidden hidden border-t border-zinc-100 bg-white shadow-lg">
             <div class="max-w-7xl mx-auto px-6 py-4 flex flex-col gap-1">
                 <a href="#services" class="mobile-menu-link px-4 py-3 rounded-lg text-slate-700 font-medium hover:bg-blue-50 hover:text-blue-950 transition-colors">Services</a>
+                @if (config('features.sole_lab'))
+                    <a href="#soles" class="mobile-menu-link px-4 py-3 rounded-lg text-slate-700 font-medium hover:bg-blue-50 hover:text-blue-950 transition-colors">Soles</a>
+                @endif
                 <a href="#portfolio" class="mobile-menu-link px-4 py-3 rounded-lg text-slate-700 font-medium hover:bg-blue-50 hover:text-blue-950 transition-colors">Before & After</a>
                 <a href="#faq" class="mobile-menu-link px-4 py-3 rounded-lg text-slate-700 font-medium hover:bg-blue-50 hover:text-blue-950 transition-colors">FAQ</a>
                 <a href="#testimonials" class="mobile-menu-link px-4 py-3 rounded-lg text-slate-700 font-medium hover:bg-blue-50 hover:text-blue-950 transition-colors">Testimonials</a>
                 <div class="border-t border-zinc-100 mt-2 pt-3 flex flex-col gap-2">
-                    <a href="/login" class="px-4 py-3 rounded-lg text-slate-700 font-medium hover:bg-blue-50 hover:text-blue-950 transition-colors">Login</a>
-                    <a href="/register" class="px-4 py-3 rounded-lg bg-blue-950 text-white font-semibold text-center hover:bg-blue-900 transition-colors">Register</a>
+                    <a href="{{ route('login') }}" class="px-4 py-3 rounded-lg text-slate-700 font-medium hover:bg-blue-50 hover:text-blue-950 transition-colors">Login</a>
+                    <a href="{{ route('register') }}" class="px-4 py-3 rounded-lg bg-blue-950 text-white font-semibold text-center hover:bg-blue-900 transition-colors">Register</a>
                 </div>
             </div>
         </div>
@@ -79,9 +85,9 @@
                 Expert sole lifts, custom orthotics, and premium shoe restoration.
             </p>
             <div class="reveal reveal-delay-3 flex flex-col sm:flex-row gap-4 justify-center items-center">
-                <button class="w-full sm:w-auto font-bold text-lg px-8 py-3 bg-amber-500 hover:bg-amber-400 text-white rounded-lg shadow-lg hover:shadow-amber-500/30 transition-all hover:-translate-y-0.5">
+                <a href="{{ auth()->check() ? route('orders.create') : route('register') }}" class="w-full sm:w-auto font-bold text-lg px-8 py-3 bg-amber-500 hover:bg-amber-400 text-white rounded-lg shadow-lg hover:shadow-amber-500/30 transition-all hover:-translate-y-0.5 text-center">
                     Schedule Consultation
-                </button>
+                </a>
                 <a href="#portfolio" class="w-full sm:w-auto font-bold text-lg px-8 py-3 text-white border-2 border-blue-400/60 hover:border-white hover:bg-white/10 rounded-lg transition-all text-center">
                     See Our Work
                 </a>
@@ -148,7 +154,7 @@
                             <p class="text-slate-600 mb-8 flex-1 leading-relaxed">
                                 Precision sole additions prescribed by medical professionals to correct leg length discrepancies and improve posture.
                             </p>
-                            <button class="w-full text-blue-900 font-bold bg-blue-50 hover:bg-blue-100 py-3 rounded-lg transition-colors">Learn More</button>
+                            <a href="#contact" x-data x-on:click="$dispatch('contact-prefill', 'Sole lifts and leg length correction')" class="w-full text-blue-900 font-bold bg-blue-50 hover:bg-blue-100 py-3 rounded-lg transition-colors text-center block">Learn More</a>
                         </div>
                     </flux:card>
                 </div>
@@ -167,7 +173,7 @@
                             <p class="text-slate-600 mb-8 flex-1 leading-relaxed">
                                 Hand-stitched, bespoke insoles designed specifically for your unique foot anatomy to provide unparalleled comfort.
                             </p>
-                            <button class="w-full text-blue-900 font-bold bg-blue-50 hover:bg-blue-100 py-3 rounded-lg transition-colors">Learn More</button>
+                            <a href="#contact" x-data x-on:click="$dispatch('contact-prefill', 'Custom orthotics and insoles')" class="w-full text-blue-900 font-bold bg-blue-50 hover:bg-blue-100 py-3 rounded-lg transition-colors text-center block">Learn More</a>
                         </div>
                     </flux:card>
                 </div>
@@ -186,13 +192,19 @@
                             <p class="text-slate-600 mb-8 flex-1 leading-relaxed">
                                 Traditional restoration services for premium footwear, seamlessly blending medical needs with original aesthetics.
                             </p>
-                            <button class="w-full text-blue-900 font-bold bg-blue-50 hover:bg-blue-100 py-3 rounded-lg transition-colors">Learn More</button>
+                            <a href="#contact" x-data x-on:click="$dispatch('contact-prefill', 'Premium shoe restoration')" class="w-full text-blue-900 font-bold bg-blue-50 hover:bg-blue-100 py-3 rounded-lg transition-colors text-center block">Learn More</a>
                         </div>
                     </flux:card>
                 </div>
             </div>
         </div>
     </section>
+
+    <!-- ===================== SOLE & COLOR OPTIONS ===================== -->
+    {{-- Built and tested, hidden until the shop decides to offer it: FEATURE_SOLE_LAB --}}
+    @if (config('features.sole_lab'))
+        <x-sole-lab />
+    @endif
 
     <!-- ===================== WHY CHOOSE US ===================== -->
     <section class="py-24 relative overflow-hidden" style="background: linear-gradient(135deg, #0f172a 0%, #1e3a5f 50%, #0f172a 100%);">
@@ -336,141 +348,29 @@
                     <h2 class="text-4xl md:text-5xl font-bold text-blue-950 font-['Playfair_Display']">Before & After</h2>
                     <p class="mt-4 text-lg text-slate-600">See how we flawlessly integrate medical modifications without compromising the shoe's original beauty.</p>
                 </div>
-                <button class="hidden md:flex text-blue-950 border border-zinc-300 bg-white hover:bg-zinc-50 font-bold px-6 py-2.5 rounded-lg transition-colors">View Full Portfolio</button>
+                <a href="{{ route('portfolio') }}" wire:navigate class="hidden md:flex text-blue-950 border border-zinc-300 bg-white hover:bg-zinc-50 font-bold px-6 py-2.5 rounded-lg transition-colors">View Full Portfolio</a>
             </div>
 
             <!-- Before/After Comparison Cards -->
 
-            {{-- Diadora: 4 numbered photos showing the complete process --}}
-            <div class="reveal rounded-2xl overflow-hidden shadow-xl border border-zinc-100 bg-white mb-8">
-                <!-- Header -->
-                <div class="px-8 pt-7 pb-4 border-b border-zinc-100">
-                    <div class="flex flex-wrap items-center gap-3">
-                        <span class="inline-block bg-amber-500 text-white text-xs font-bold uppercase tracking-widest px-3 py-1 rounded">Real Case</span>
-                        <h4 class="text-xl font-bold text-blue-950 font-['Playfair_Display']">Diadora — Sole Lift: Complete Process</h4>
-                    </div>
-                    <p class="text-slate-500 text-sm mt-2">Diadora athletic shoe with orthopedic lift. The 4 photos show the complete process of a doctor-prescribed modification.</p>
+            @foreach ($this->portfolioWideItems as $item)
+                <x-portfolio.process-card :item="$item" />
+            @endforeach
+
+            @if ($this->portfolioGridItems->isNotEmpty())
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                    @foreach ($this->portfolioGridItems as $index => $item)
+                        <x-portfolio.before-after-card :item="$item" :delay="$index === 1 ? 'reveal-delay-1' : null" />
+                    @endforeach
                 </div>
+            @endif
 
-                <!-- 2x2 Grid of numbered photos -->
-                <div class="grid grid-cols-2 md:grid-cols-4 h-auto md:h-80">
-                    <!-- Photo 1 -->
-                    <div class="relative overflow-hidden border-r border-b md:border-b-0 border-white/30 group">
-                        <img src="/images/shoes/process-1.jpg" alt="Step 1" class="w-full h-64 md:h-full object-cover object-center group-hover:scale-105 transition-transform duration-500">
-                        <div class="absolute inset-0 bg-gradient-to-t from-blue-950/85 via-blue-950/10 to-transparent"></div>
-                        <div class="absolute top-3 left-3">
-                            <span class="bg-white text-blue-950 text-xs font-extrabold w-8 h-8 rounded-full flex items-center justify-center shadow-md text-base">1</span>
-                        </div>
-                        <div class="absolute bottom-0 left-0 right-0 p-4">
-                            <div class="text-white font-bold text-sm">Original</div>
-                            <div class="text-blue-200 text-xs">No modification</div>
-                        </div>
-                    </div>
-
-                    <!-- Photo 2 -->
-                    <div class="relative overflow-hidden border-b md:border-b-0 md:border-r border-white/30 group">
-                        <img src="/images/shoes/process-4.jpg" alt="Step 2 - Evaluation" class="w-full h-64 md:h-full object-cover object-center group-hover:scale-105 transition-transform duration-500">
-                        <div class="absolute inset-0 bg-gradient-to-t from-blue-950/85 via-blue-950/10 to-transparent"></div>
-                        <div class="absolute top-3 left-3">
-                            <span class="bg-blue-800 text-white text-xs font-extrabold w-8 h-8 rounded-full flex items-center justify-center shadow-md text-base">2</span>
-                        </div>
-                        <div class="absolute bottom-0 left-0 right-0 p-4">
-                            <div class="text-white font-bold text-sm">Evaluation</div>
-                            <div class="text-blue-200 text-xs">Measurements & Rx</div>
-                        </div>
-                    </div>
-
-                    <!-- Photo 3 -->
-                    <div class="relative overflow-hidden border-r border-white/30 group">
-                        <img src="/images/shoes/process-3.jpg" alt="Step 3" class="w-full h-64 md:h-full object-cover object-center group-hover:scale-105 transition-transform duration-500">
-                        <div class="absolute inset-0 bg-gradient-to-t from-blue-950/85 via-blue-950/10 to-transparent"></div>
-                        <div class="absolute top-3 left-3">
-                            <span class="bg-blue-900 text-white text-xs font-extrabold w-8 h-8 rounded-full flex items-center justify-center shadow-md text-base">3</span>
-                        </div>
-                        <div class="absolute bottom-0 left-0 right-0 p-4">
-                            <div class="text-white font-bold text-sm">Lift Applied</div>
-                            <div class="text-blue-200 text-xs">Under construction</div>
-                        </div>
-                    </div>
-
-                    <!-- Photo 4 -->
-                    <div class="relative overflow-hidden group">
-                        <img src="/images/shoes/process-2.jpg" alt="Step 4 - Final Result" class="w-full h-64 md:h-full object-cover object-center group-hover:scale-105 transition-transform duration-500">
-                        <div class="absolute inset-0 bg-gradient-to-t from-amber-900/80 via-blue-950/10 to-transparent"></div>
-                        <div class="absolute top-3 left-3">
-                            <span class="bg-amber-500 text-white text-xs font-extrabold w-8 h-8 rounded-full flex items-center justify-center shadow-md text-base">4</span>
-                        </div>
-                        <div class="absolute top-3 right-3">
-                            <span class="bg-amber-500 text-white text-xs font-bold px-2 py-1 rounded shadow">AFTER ✓</span>
-                        </div>
-                        <div class="absolute bottom-0 left-0 right-0 p-4">
-                            <div class="text-white font-bold text-sm">Final Result</div>
-                            <div class="text-amber-200 text-xs">Lift integrated</div>
-                        </div>
-                    </div>
+            @if ($this->portfolioItems->isEmpty())
+                <div class="rounded-2xl border border-dashed border-zinc-300 bg-white py-16 text-center">
+                    <p class="text-slate-500">Our latest cases are on their way.</p>
                 </div>
-
-                <!-- Tags -->
-                <div class="px-8 py-6 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
-                    <div class="flex flex-wrap gap-2">
-                        <span class="text-xs bg-blue-50 text-blue-800 font-semibold px-3 py-1 rounded-full">Leg Length Discrepancy</span>
-                        <span class="text-xs bg-amber-50 text-amber-700 font-semibold px-3 py-1 rounded-full">Sole Lift Build-Up</span>
-                        <span class="text-xs bg-green-50 text-green-700 font-semibold px-3 py-1 rounded-full">Rx Required</span>
-                        <span class="text-xs bg-slate-100 text-slate-600 font-semibold px-3 py-1 rounded-full">Diadora Athletic</span>
-                    </div>
-                    <div class="text-slate-400 text-xs font-medium whitespace-nowrap">📍 Michigan Studio</div>
-                </div>
-            </div>
-
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
-                <!-- Card: NB Sole Lift -->
-                <div class="reveal rounded-2xl overflow-hidden shadow-lg border border-zinc-100 bg-white">
-                    <div class="flex h-64 md:h-72 w-full">
-                        <div class="w-1/2 relative overflow-hidden border-r-2 border-white">
-                            <img src="/images/shoes/shoe-nb-back.jpg" alt="Shoe before lift" class="w-full h-full object-cover object-center">
-                            <span class="absolute top-3 left-3 bg-white/90 text-blue-950 text-xs font-bold px-3 py-1 rounded shadow">BEFORE</span>
-                        </div>
-                        <div class="w-1/2 relative overflow-hidden">
-                            <img src="/images/shoes/shoe-nb-side.jpg" alt="Shoe after lift" class="w-full h-full object-cover object-center">
-                            <span class="absolute top-3 right-3 bg-blue-950 text-white text-xs font-bold px-3 py-1 rounded shadow">AFTER</span>
-                        </div>
-                    </div>
-                    <div class="p-6">
-                        <h4 class="text-xl font-bold text-blue-950 mb-1 font-['Playfair_Display']">New Balance — 1.5" Sole Lift</h4>
-                        <p class="text-slate-600 text-sm leading-relaxed">Invisible lift integrated directly into the midsole. Prescribed by a podiatrist to correct leg length discrepancy.</p>
-                        <div class="mt-4 flex gap-2">
-                            <span class="text-xs bg-blue-50 text-blue-800 font-semibold px-3 py-1 rounded-full">Leg Length</span>
-                            <span class="text-xs bg-amber-50 text-amber-700 font-semibold px-3 py-1 rounded-full">1.5" Lift</span>
-                            <span class="text-xs bg-green-50 text-green-700 font-semibold px-3 py-1 rounded-full">Rx Required</span>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Card: Clog Custom Insole -->
-                <div class="reveal reveal-delay-1 rounded-2xl overflow-hidden shadow-lg border border-zinc-100 bg-white">
-                    <div class="flex h-64 md:h-72 w-full">
-                        <div class="w-1/2 relative overflow-hidden border-r-2 border-white">
-                            <img src="/images/shoes/clog-smooth.jpg" alt="Medical clog before modification" class="w-full h-full object-cover object-center">
-                            <span class="absolute top-3 left-3 bg-white/90 text-blue-950 text-xs font-bold px-3 py-1 rounded shadow">BEFORE</span>
-                        </div>
-                        <div class="w-1/2 relative overflow-hidden">
-                            <img src="/images/shoes/clog-perforated.jpg" alt="Medical clog with perforated insole" class="w-full h-full object-cover object-center">
-                            <span class="absolute top-3 right-3 bg-blue-950 text-white text-xs font-bold px-3 py-1 rounded shadow">AFTER</span>
-                        </div>
-                    </div>
-                    <div class="p-6">
-                        <h4 class="text-xl font-bold text-blue-950 mb-1 font-['Playfair_Display']">Medical Clogs — Arch & Pressure Relief</h4>
-                        <p class="text-slate-600 text-sm leading-relaxed">Custom stitched insoles added to professional medical clogs. Plantar fasciitis support with metatarsal pad and full-length cushioning for healthcare workers.</p>
-                        <div class="mt-4 flex gap-2">
-                            <span class="text-xs bg-blue-50 text-blue-800 font-semibold px-3 py-1 rounded-full">Plantar Support</span>
-                            <span class="text-xs bg-amber-50 text-amber-700 font-semibold px-3 py-1 rounded-full">Custom Insole</span>
-                            <span class="text-xs bg-purple-50 text-purple-700 font-semibold px-3 py-1 rounded-full">Healthcare</span>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <button class="w-full mt-8 md:hidden text-blue-950 border border-zinc-300 bg-white hover:bg-zinc-50 font-bold py-3 rounded-lg transition-colors">View Full Portfolio</button>
+            @endif
+            <a href="{{ route('portfolio') }}" wire:navigate class="block w-full mt-8 md:hidden text-blue-950 border border-zinc-300 bg-white hover:bg-zinc-50 font-bold py-3 rounded-lg transition-colors text-center">View Full Portfolio</a>
         </div>
     </section>
 
@@ -627,9 +527,9 @@
             </div>
 
             <div class="mt-20 text-center reveal">
-                <button class="bg-blue-950 hover:bg-blue-900 text-white font-bold text-lg px-10 py-4 rounded-lg shadow-lg hover:-translate-y-0.5 transition-transform">
+                <a href="{{ auth()->check() ? route('orders.create') : route('register') }}" class="inline-block bg-blue-950 hover:bg-blue-900 text-white font-bold text-lg px-10 py-4 rounded-lg shadow-lg hover:-translate-y-0.5 transition-transform text-center">
                     Start Your Order
-                </button>
+                </a>
             </div>
         </div>
     </section>
@@ -791,30 +691,7 @@
 
                 <!-- Contact Form (Right) -->
                 <div class="bg-white p-10 md:p-16 md:w-7/12">
-                    <h3 class="text-2xl font-bold text-blue-950 mb-8 font-['Playfair_Display']">Send us a Message</h3>
-
-                    <form class="space-y-6">
-                        <div class="grid grid-cols-1 gap-6">
-                            <div>
-                                <label class="block text-sm font-medium text-slate-700 mb-1">Name</label>
-                                <input type="text" placeholder="Your full name" class="w-full border border-slate-300 bg-slate-50 text-slate-900 rounded-lg px-4 py-2.5 focus:outline-none focus:ring-2 focus:ring-amber-500 focus:border-amber-500" />
-                            </div>
-                            <div>
-                                <label class="block text-sm font-medium text-slate-700 mb-1">Email</label>
-                                <input type="email" placeholder="your@email.com" class="w-full border border-slate-300 bg-slate-50 text-slate-900 rounded-lg px-4 py-2.5 focus:outline-none focus:ring-2 focus:ring-amber-500 focus:border-amber-500" />
-                            </div>
-                            <div>
-                                <label class="block text-sm font-medium text-slate-700 mb-1">Message</label>
-                                <textarea placeholder="How can we help you?" rows="4" class="w-full border border-slate-300 bg-slate-50 text-slate-900 rounded-lg px-4 py-2.5 focus:outline-none focus:ring-2 focus:ring-amber-500 focus:border-amber-500"></textarea>
-                            </div>
-                        </div>
-
-                        <div class="pt-4">
-                            <button class="w-full bg-amber-500 hover:bg-amber-400 text-white font-bold text-lg py-3 rounded-lg shadow-md hover:-translate-y-0.5 transition-transform">
-                                Send Message
-                            </button>
-                        </div>
-                    </form>
+                    <livewire:contact-form />
                 </div>
             </div>
         </div>
